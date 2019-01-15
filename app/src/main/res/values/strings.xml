@@ -2,4 +2,7 @@
     <string name="app_name">LiquidPackagingCalculator</string>
     <string name="ounce_to_ounce"> </string>
     <string name="ounce_to_pint"> </string>
+    <string name="ounces">Ounces fn output</string>
+    <string name="pints">Pints fn output</string>
+    <string name="gallons">Gallons fn output</string>
 </resources>
