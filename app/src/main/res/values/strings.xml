@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LiquidPackagingCalculator</string>
+    <string name="ounce_to_ounce"> </string>
+    <string name="ounce_to_pint"> </string>
+</resources>
