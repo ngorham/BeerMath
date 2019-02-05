@@ -19,6 +19,7 @@ public class LiquidCalculator {
     private final double MILLILITER_IN_OZ = 0.033814;
     private final double LITER_IN_OZ = 33.814;
     private final double BARREL_IN_GALLON = 31.5;
+    private final double LITER_IN_MILLILITER = 1000.0;
 
     //Default Constructor
     public LiquidCalculator(){}
@@ -102,6 +103,78 @@ public class LiquidCalculator {
     }
 
     //Barrel conversion functions
+    //Convert barrel to ounce
+    public double barrelToOunce(double val){
+        return (val * BARREL_IN_OZ);
+    }
+    //Convert barrel to pint
+    public double barrelToPint(double val){
+        return (ounceToPint(barrelToOunce(val)));
+    }
+    //Convert barrel to gallon
+    public double barrelToGallon(double val){
+        return (val * BARREL_IN_GALLON);
+    }
+    //Convert barrel to barrel
+    public double barrelToBarrel(double val){ return val; }
+    //Convert barrel to milliliter
+    public double barrelToMilliliter(double val){
+        return (ounceToMilliliter(barrelToOunce(val)));
+    }
+    //Convert barrel to liter
+    public double barrelToLiter(double val){
+        return (ounceToLiter(barrelToOunce(val)));
+    }
+
     //Milliliter conversion functions
+    //Convert milliliter to ounce
+    public double milliliterToOunce(double val){
+        return (val * MILLILITER_IN_OZ);
+    }
+    //Convert milliliter to pint
+    public double milliliterToPint(double val){
+        return (ounceToPint(milliliterToOunce(val)));
+    }
+    //Convert milliliter to gallon
+    public double milliliterToGallon(double val){
+        return (ounceToGallon(milliliterToOunce(val)));
+    }
+    //Convert milliliter to barrel
+    public double milliliterToBarrel(double val){
+        return (ounceToBarrel(milliliterToOunce(val)));
+    }
+    //Convert milliliter to milliliter
+    public double milliliterToMilliliter(double val){
+        return val;
+    }
+    //Convert milliliter to liter
+    public double milliliterToLiter(double val){
+        return (val / LITER_IN_MILLILITER);
+    }
+
     //Liter conversion functions
+    //Convert liter to ounce
+    public double literToOunce(double val){
+        return (val * LITER_IN_OZ);
+    }
+    //Convert liter to pint
+    public double literToPint(double val){
+        return (ounceToPint(literToOunce(val)));
+    }
+    //Convert liter to gallon
+    public double literToGallon(double val){
+        return (ounceToGallon(literToOunce(val)));
+    }
+    //Convert liter to barrel
+    public double literToBarrel(double val){
+        return (ounceToBarrel(literToOunce(val)));
+    }
+    //Convert liter to milliliter
+    public double literToMilliliter(double val){
+        return (val * LITER_IN_MILLILITER);
+    }
+    //Convert liter to liter
+    public double literToLiter(double val){
+        return val;
+    }
 }
