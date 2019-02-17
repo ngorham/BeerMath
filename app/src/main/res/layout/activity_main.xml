@@ -1,198 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
-
-    <!--<TextView
-        android:id="@+id/ounces"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/ounces"
-        app:layout_constraintBottom_toTopOf="@id/ounce_to_ounce_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <TextView
-        android:id="@+id/ounce_to_ounce_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ounce_to_ounce"
-        app:layout_constraintBottom_toTopOf="@id/ounce_to_pint_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ounces" />
-    <TextView
-        android:id="@+id/ounce_to_pint_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ounce_to_pint"
-        app:layout_constraintBottom_toTopOf="@id/ounce_to_gallon_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ounce_to_ounce_text" />
-    <TextView
-        android:id="@+id/ounce_to_gallon_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ounce_to_pint"
-        app:layout_constraintBottom_toTopOf="@id/ounce_to_barrel_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ounce_to_pint_text" />
-    <TextView
-        android:id="@+id/ounce_to_barrel_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ounce_to_pint"
-        app:layout_constraintBottom_toTopOf="@id/ounce_to_milliliter_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ounce_to_gallon_text" />
-    <TextView
-        android:id="@+id/ounce_to_milliliter_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ounce_to_pint"
-        app:layout_constraintBottom_toTopOf="@id/ounce_to_liter_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ounce_to_barrel_text" />
-    <TextView
-        android:id="@+id/ounce_to_liter_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ounce_to_pint"
-        app:layout_constraintBottom_toTopOf="@id/pints"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ounce_to_milliliter_text" />
-    <TextView
-        android:id="@+id/pints"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/pints"
-        app:layout_constraintBottom_toTopOf="@id/pint_to_ounce_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <TextView
-        android:id="@+id/pint_to_ounce_text"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/ounce_to_ounce"
-        app:layout_constraintBottom_toTopOf="@id/pint_to_pint_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pints" />
-    <TextView
-        android:id="@+id/pint_to_pint_text"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/ounce_to_ounce"
-        app:layout_constraintBottom_toTopOf="@id/pint_to_gallon_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pint_to_ounce_text" />
-    <TextView
-        android:id="@+id/pint_to_gallon_text"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/ounce_to_ounce"
-        app:layout_constraintBottom_toTopOf="@id/pint_to_barrel_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pint_to_pint_text" />
-    <TextView
-        android:id="@+id/pint_to_barrel_text"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/ounce_to_ounce"
-        app:layout_constraintBottom_toTopOf="@id/pint_to_milliliter_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pint_to_gallon_text" />
-    <TextView
-        android:id="@+id/pint_to_milliliter_text"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/ounce_to_ounce"
-        app:layout_constraintBottom_toTopOf="@id/pint_to_liter_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pint_to_barrel_text" />
-    <TextView
-        android:id="@+id/pint_to_liter_text"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/ounce_to_ounce"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pint_to_milliliter_text" />-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
     <TextView
         android:id="@+id/gallons"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="@string/gallons"
-        app:layout_constraintBottom_toTopOf="@id/gallon_to_ounce_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/gallons" />
     <TextView
         android:id="@+id/gallon_to_ounce_text"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="@string/ounce_to_ounce"
-        app:layout_constraintBottom_toTopOf="@id/gallon_to_pint_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gallons" />
+        android:text="@string/ounce_to_ounce" />
     <TextView
         android:id="@+id/gallon_to_pint_text"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="@string/ounce_to_ounce"
-        app:layout_constraintBottom_toTopOf="@id/gallon_to_gallon_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gallon_to_ounce_text" />
+        android:text="@string/ounce_to_ounce" />
     <TextView
         android:id="@+id/gallon_to_gallon_text"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="@string/ounce_to_ounce"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gallon_to_pint_text" />
+        android:text="@string/ounce_to_ounce" />
     <TextView
         android:id="@+id/gallon_to_barrel_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ounce_to_ounce"
-        app:layout_constraintBottom_toTopOf="@id/gallon_to_milliliter_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gallon_to_gallon_text"/>
+        android:text="@string/ounce_to_ounce" />
     <TextView
         android:id="@+id/gallon_to_milliliter_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ounce_to_ounce"
-        app:layout_constraintBottom_toTopOf="@id/gallon_to_liter_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gallon_to_barrel_text"/>
+        android:text="@string/ounce_to_ounce" />
     <TextView
         android:id="@+id/gallon_to_liter_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ounce_to_ounce"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gallon_to_milliliter_text"/>
-</android.support.constraint.ConstraintLayout>
+        android:text="@string/ounce_to_ounce" />
+</LinearLayout>
