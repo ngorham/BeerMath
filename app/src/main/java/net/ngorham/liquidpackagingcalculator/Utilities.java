@@ -8,6 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+/**
+ * Liquid Packaging Calculator
+ * Utilities.java
+ * Utility
+ * Purpose: Collection of utilities
+ *
+ * @author Neil Gorham
+ * @version 1.0 02/17/2019
+ *
+ */
+
 public class Utilities {
     //Display About AlertDialog
     public static void aboutDialog(final Context context){

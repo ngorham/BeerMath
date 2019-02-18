@@ -2,6 +2,10 @@ package net.ngorham.liquidpackagingcalculator;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
@@ -12,12 +16,32 @@ import android.widget.TextView;
 
 import java.lang.reflect.Method;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * Liquid Packaging Calculator
+ * MainActivity.java
+ * Detail
+ * Purpose: Display two radio selections of input and output of unit conversion
+ *
+ * @author Neil Gorham
+ * @version 1.0 02/17/2019
+ *
+ */
+
+public class MainActivity extends AppCompatActivity
+    implements VolumeFragment.OnVolumeFragmentInteractionListener {
     //Private constants
     private static final String TAG = "MainActivity";
     //Private variables
     private Context context;
+    //Fragment variables
+    private Fragment volumeFrag;
+    private FragmentManager fm;
+    private FragmentTransaction ft;
     private LiquidCalculator lq;
+
+    //OnVolumeFragmentInteractionListener
+    @Override
+    public void onVolumeFragmentInteraction(Uri uri){}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +52,14 @@ public class MainActivity extends AppCompatActivity {
         //Set up Action bar
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+        //Set up Fragment layout
+        setUpFragmentLayout();
+        /*Fragment fragment = new VolumeFragment();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(R.id.content_frame, fragment);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();*/
         //Set up Liquid Calculator
         lq = new LiquidCalculator();
         //Set up textViews
@@ -169,5 +201,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         return super.onPrepareOptionsMenu(menu);
+    }
+
+    //Set up Fragment layout
+    private void setUpFragmentLayout(){
+        volumeFrag = VolumeFragment.newInstance("volume", "fragment");
+        fm = getSupportFragmentManager();
+        ft = fm.beginTransaction();
+        ft.add(R.id.content_frame, volumeFrag);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
     }
 }
