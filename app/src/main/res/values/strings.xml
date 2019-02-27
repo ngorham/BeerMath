@@ -19,5 +19,18 @@
     <string name="signature">Neil Gorham</string>
 
     <!-- VolumeFragment -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="volume_units">
+        <item>Ounce</item>
+        <item>Pint</item>
+        <item>Gallon</item>
+        <item>Barrel</item>
+        <item>Milliliter</item>
+        <item>Liter</item>
+    </string-array>
+    <string name="from_text">From</string>
+    <string name="from_selected_text"> </string>
+    <string name="to_text">To</string>
+    <string name="to_selected_text"> </string>
+    <string name="hint_from_value">0</string>
+    <string name="testButton">Test</string>
 </resources>

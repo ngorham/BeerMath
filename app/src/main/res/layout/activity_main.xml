@@ -15,41 +15,6 @@
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-    <TextView
-        android:id="@+id/gallons"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/gallons" />
-    <TextView
-        android:id="@+id/gallon_to_ounce_text"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/ounce_to_ounce" />
-    <TextView
-        android:id="@+id/gallon_to_pint_text"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/ounce_to_ounce" />
-    <TextView
-        android:id="@+id/gallon_to_gallon_text"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/ounce_to_ounce" />
-    <TextView
-        android:id="@+id/gallon_to_barrel_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ounce_to_ounce" />
-    <TextView
-        android:id="@+id/gallon_to_milliliter_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ounce_to_ounce" />
-    <TextView
-        android:id="@+id/gallon_to_liter_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ounce_to_ounce" />
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
