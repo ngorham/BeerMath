@@ -2,7 +2,6 @@ package net.ngorham.liquidpackagingcalculator;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -12,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.lang.reflect.Method;
@@ -27,7 +27,8 @@ import java.lang.reflect.Method;
  *
  */
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+    implements VolumeFragment.VolumeFragmentListener {
     //Private constants
     private static final String TAG = "MainActivity";
     //Private variables
@@ -51,21 +52,6 @@ public class MainActivity extends AppCompatActivity {
         setUpFragmentLayout();
         //Set up Liquid Calculator
         lq = new LiquidCalculator();
-        //Set up textViews
-        //Ounces
-        /*
-        TextView ounceToOunce = (TextView) findViewById(R.id.ounce_to_ounce_text);
-        TextView ounceToPint = (TextView) findViewById(R.id.ounce_to_pint_text);
-        TextView ounceToGallon = (TextView) findViewById(R.id.ounce_to_gallon_text);
-        TextView ounceToBarrel = (TextView) findViewById(R.id.ounce_to_barrel_text);
-        TextView ounceToMilliliter = (TextView) findViewById(R.id.ounce_to_milliliter_text);
-        TextView ounceToLiter = (TextView) findViewById(R.id.ounce_to_liter_text);
-        ounceToOunce.setText(String.valueOf(lq.ounceToOunce(1)));
-        ounceToPint.setText(String.valueOf(lq.ounceToPint(1)));
-        ounceToGallon.setText(String.valueOf(lq.ounceToGallon(1)));
-        ounceToBarrel.setText(String.valueOf(lq.ounceToBarrel(1)));
-        ounceToMilliliter.setText(String.valueOf(lq.ounceToMilliliter(1)));
-        ounceToLiter.setText(String.valueOf(lq.ounceToLiter(1)));*/
     }
 
     @Override
@@ -174,5 +160,252 @@ public class MainActivity extends AppCompatActivity {
         ft.add(R.id.content_frame, volumeFrag);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.commit();
+    }
+
+    //Interface for mapping liquid calculator functions
+    private interface Calculation{
+        double calculate(double input);
+    }
+    //2-dimensional array of conversion functions
+    private Calculation[][] calculations = new Calculation[][]{
+            {//Ounce conversion functions
+                new Calculation() {
+                    @Override
+                    public double calculate(double input) {
+                        return lq.ounceToOunce(input);
+                    }
+                },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.ounceToPint(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.ounceToGallon(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.ounceToBarrel(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.ounceToMilliliter(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.ounceToLiter(input);
+                        }
+                    }
+            },
+            {//Pint conversion functions
+                new Calculation() {
+                    @Override
+                    public double calculate(double input) {
+                        return lq.pintToOunce(input);
+                    }
+                },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.pintToPint(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.pintToGallon(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.pintToBarrel(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.pintToMilliliter(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.pintToLiter(input);
+                        }
+                    }
+            },
+            {//Gallon conversion functions
+                new Calculation() {
+                    @Override
+                    public double calculate(double input) {
+                        return lq.gallonToOunce(input);
+                    }
+                },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.gallonToPint(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.gallonToGallon(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.gallonToBarrel(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.gallonToMilliliter(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.gallonToLiter(input);
+                        }
+                    }
+            },
+            {//Barrel conversion functions
+                new Calculation() {
+                    @Override
+                    public double calculate(double input) {
+                        return lq.barrelToOunce(input);
+                    }
+                },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.barrelToPint(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.barrelToGallon(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.barrelToBarrel(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.barrelToMilliliter(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.barrelToLiter(input);
+                        }
+                    }
+            },
+            {//Milliliter conversion functions
+                new Calculation() {
+                    @Override
+                    public double calculate(double input) {
+                        return lq.milliliterToOunce(input);
+                    }
+                },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.milliliterToPint(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.milliliterToGallon(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.milliliterToBarrel(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.milliliterToMilliliter(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.milliliterToLiter(input);
+                        }
+                    }
+            },
+            {//Liter conversion functions
+                new Calculation() {
+                    @Override
+                    public double calculate(double input) {
+                        return lq.literToOunce(input);
+                    }
+                },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.literToPint(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.literToGallon(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.literToBarrel(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.literToMilliliter(input);
+                        }
+                    },
+                    new Calculation() {
+                        @Override
+                        public double calculate(double input) {
+                            return lq.literToLiter(input);
+                        }
+                    }
+            }
+    };
+
+    //VolumeFragmentListener functions
+    @Override
+    public void convert(EditText output, double input, int fromIndex, int toIndex){
+        //Get calculation
+        double conversion = calculations[fromIndex][toIndex].calculate(input);
+        if(output != null){
+            //set output text to calculation
+            output.setText(String.valueOf(conversion));
+        }
     }
 }

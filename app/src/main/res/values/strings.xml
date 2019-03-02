@@ -9,12 +9,13 @@
     <string name="pints">Pints fn output</string>
     <string name="gallons">Gallons fn output</string>
     <!-- Action bar -->
+    <string name="clear">Clear</string>
     <string name="rate_us">Rate us!</string>
     <string name="app_share">Share the app!</string>
     <string name="app_about">About</string>
     <!-- About dialog -->
     <string name="app_version">App Version</string>
-    <string name="app_version_number">1.0 3/2019</string>
+    <string name="app_version_number">1.0.0 3/2019</string>
     <string name="author">Author</string>
     <string name="signature">Neil Gorham</string>
 
@@ -32,5 +33,5 @@
     <string name="to_text">To</string>
     <string name="to_selected_text"> </string>
     <string name="hint_from_value">0</string>
-    <string name="testButton">Test</string>
+    <string name="default_selected_text">Ounce</string>
 </resources>
