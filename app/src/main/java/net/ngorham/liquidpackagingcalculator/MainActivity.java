@@ -48,8 +48,10 @@ public class MainActivity extends AppCompatActivity
         //Set up Action bar
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-        //Set up Fragment layout
-        setUpFragmentLayout();
+        if(savedInstanceState == null) {
+            //Set up Fragment layout
+            setUpFragmentLayout(0, 0);
+        }
         //Set up Liquid Calculator
         lq = new LiquidCalculator();
     }
@@ -153,8 +155,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     //Set up Fragment layout
-    private void setUpFragmentLayout(){
-        volumeFrag = VolumeFragment.newInstance();
+    private void setUpFragmentLayout(int fromRadioButtonId, int toRadioButtonId){
+        volumeFrag = VolumeFragment.newInstance(fromRadioButtonId, toRadioButtonId);
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
         ft.add(R.id.content_frame, volumeFrag);

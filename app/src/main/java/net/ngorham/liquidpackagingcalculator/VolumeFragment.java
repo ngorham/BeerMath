@@ -33,9 +33,14 @@ public class VolumeFragment extends Fragment {
     private final String TAG = "VolumeFragment";
 
     //Private variables
+    private View layout;
     private RadioGroup fromRadioGroup;
     private RadioGroup toRadioGroup;
     private VolumeFragmentListener listener;
+    private int fromRadioButtonId;
+    private int toRadioButtonId;
+    private String fromRadioButtonText;
+    private String toRadioButtonText;
 
     public VolumeFragment() {
         // Required empty public constructor
@@ -47,11 +52,25 @@ public class VolumeFragment extends Fragment {
      *
      * @return A new instance of fragment VolumeFragment.
      */
-    public static VolumeFragment newInstance() {
+    public static VolumeFragment newInstance(int fromRadioButId, int toRadioButId) {
         VolumeFragment fragment = new VolumeFragment();
         Bundle args = new Bundle();
+        args.putInt(Utilities.FROM_RADIO_BUTTON_ID, fromRadioButId);
+        args.putInt(Utilities.TO_RADIO_BUTTON_ID, toRadioButId);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Log.d(TAG, "INSIDE onAttach: called");
+        if (context instanceof VolumeFragmentListener){
+            listener = (VolumeFragmentListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement VolumeFragmentListener");
+        }
     }
 
     @Override
@@ -59,8 +78,6 @@ public class VolumeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "INSIDE onCreate: called");
         setHasOptionsMenu(true);
-        if (getArguments() != null) {
-        }
     }
 
     @Override
@@ -68,7 +85,12 @@ public class VolumeFragment extends Fragment {
                              Bundle savedInstanceState) {
         Log.d(TAG, "INSIDE onCreateView: called");
         // Inflate the layout for this fragment
-        View layout = inflater.inflate(R.layout.fragment_volume, container, false);
+        layout = inflater.inflate(R.layout.fragment_volume, container, false);
+        //Check Arguments
+        if(getArguments() != null){
+            setFromRadioButtonId(getArguments().getInt(Utilities.FROM_RADIO_BUTTON_ID));
+            setToRadioButtonId(getArguments().getInt(Utilities.TO_RADIO_BUTTON_ID));
+        }
         //Set up From RadioGroup
         fromRadioGroup = (RadioGroup) layout.findViewById(R.id.from_radio_group);
         toRadioGroup = (RadioGroup) layout.findViewById(R.id.to_radio_group);
@@ -77,7 +99,7 @@ public class VolumeFragment extends Fragment {
         final EditText inputTextView = layout.findViewById(R.id.from_value_edit);
         //Output TextView
         final EditText outputTextView = layout.findViewById(R.id.to_value_edit);
-        //create radio buttons
+        //Create radio buttons
         for(int i = 0; i < units.length; i++){
             RadioButton fromRadioButton = new RadioButton(getActivity());
             RadioButton toRadioButton = new RadioButton(getActivity());
@@ -85,18 +107,26 @@ public class VolumeFragment extends Fragment {
             toRadioButton.setText(units[i]);
             fromRadioButton.setId(i);
             toRadioButton.setId(i);
+            fromRadioButton.setChecked(false);
+            toRadioButton.setChecked(false);
             fromRadioGroup.addView(fromRadioButton);
             toRadioGroup.addView(toRadioButton);
+            if(i == getFromRadioButtonId()){
+                setFromRadioButtonText(units[i]);
+            }
+            if(i == getToRadioButtonId()){
+                setToRadioButtonText(units[i]);
+            }
         }
         //Set default checked buttons
-        fromRadioGroup.check(0);
-        toRadioGroup.check(0);
+        fromRadioGroup.check(getFromRadioButtonId());
+        toRadioGroup.check(getToRadioButtonId());
         //Set default selected texts
         TextView fromSelectedText = layout.findViewById(R.id.from_selected_text);
         TextView toSelectedText = layout.findViewById(R.id.to_selected_text);
-        fromSelectedText.setText(R.string.default_selected_text);
-        toSelectedText.setText(R.string.default_selected_text);
-        //set listener to input textView
+        fromSelectedText.setText(getFromRadioButtonText());
+        toSelectedText.setText(getToRadioButtonText());
+        //Set listener to input textView
         inputTextView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -120,45 +150,111 @@ public class VolumeFragment extends Fragment {
 
             }
         });
-        //set listener to radio button groups
+        //Set listener to radio button groups
+        //Set listener to from radio button group
         fromRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                int fromCheckedRadioButtonId = fromRadioGroup.getCheckedRadioButtonId();
-                RadioButton radioBtn = (RadioButton) getActivity().findViewById(fromCheckedRadioButtonId);
-                TextView fromSelectedText = (TextView) getActivity().findViewById(R.id.from_selected_text);
-                fromSelectedText.setText(radioBtn.getText());
-                //check input value
-                String inputStr = inputTextView.getText().toString().trim();
-                if(inputStr.length() > 0){
-                    double input = Double.parseDouble(inputStr);
-                    int toCheckedRadioButtonId = toRadioGroup.getCheckedRadioButtonId();
-                    listener.convert(outputTextView, input, fromCheckedRadioButtonId, toCheckedRadioButtonId);
-                } else {
-                    outputTextView.setText("0");
+                if(group.findViewById(checkedId).isPressed()){
+                    Log.d(TAG, "INSIDE fromRadioGroupCheckListener: called");
+                    getArguments().putInt(Utilities.FROM_RADIO_BUTTON_ID, checkedId);
+                    setFromRadioButtonId(checkedId);
+                    RadioButton radioBtn = (RadioButton) getActivity().findViewById(checkedId);
+                    TextView fromSelectedText = (TextView) getActivity().findViewById(R.id.from_selected_text);
+                    fromSelectedText.setText(radioBtn.getText());
+                    //check input value
+                    String inputStr = inputTextView.getText().toString().trim();
+                    if(inputStr.length() > 0){
+                        double input = Double.parseDouble(inputStr);
+                        int toCheckedRadioButtonId = toRadioGroup.getCheckedRadioButtonId();
+                        listener.convert(outputTextView, input, checkedId, toCheckedRadioButtonId);
+                    } else {
+                        outputTextView.setText("0");
+                    }
                 }
-
             }
         });
+        //Set listener to to radio button group
         toRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                int toCheckedRadioButtonId = toRadioGroup.getCheckedRadioButtonId();
-                RadioButton radioBtn = (RadioButton) getActivity().findViewById(toCheckedRadioButtonId);
-                TextView toSelectedText = (TextView) getActivity().findViewById(R.id.to_selected_text);
-                toSelectedText.setText(radioBtn.getText());
-                //check input value
-                String inputStr = inputTextView.getText().toString().trim();
-                if(inputStr.length() > 0){
-                    double input = Double.parseDouble(inputStr);
-                    int fromCheckedRadioButtonId = fromRadioGroup.getCheckedRadioButtonId();
-                    listener.convert(outputTextView, input, fromCheckedRadioButtonId, toCheckedRadioButtonId);
-                } else {
-                    outputTextView.setText("0");
+                if(group.findViewById(checkedId).isPressed()){
+                    Log.d(TAG, "INSIDE toRadioGroupCheckListener: called");
+                    getArguments().putInt(Utilities.TO_RADIO_BUTTON_ID, checkedId);
+                    setToRadioButtonId(checkedId);
+                    RadioButton radioBtn = (RadioButton) getActivity().findViewById(checkedId);
+                    TextView toSelectedText = (TextView) getActivity().findViewById(R.id.to_selected_text);
+                    toSelectedText.setText(radioBtn.getText());
+                    //check input value
+                    String inputStr = inputTextView.getText().toString().trim();
+                    if(inputStr.length() > 0){
+                        double input = Double.parseDouble(inputStr);
+                        int fromCheckedRadioButtonId = fromRadioGroup.getCheckedRadioButtonId();
+                        listener.convert(outputTextView, input, fromCheckedRadioButtonId, checkedId);
+                    } else {
+                        outputTextView.setText("0");
+                    }
                 }
             }
         });
         return layout;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
+        Log.d(TAG, "INSIDE onSaveInstanceState: called");
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState){
+        super.onActivityCreated(savedInstanceState);
+        Log.d(TAG, "INSIDE onActivityCreated: called");
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        Log.d(TAG, "INSIDE onStart: called");
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        Log.d(TAG, "INSIDE onResume: called");
+        fromRadioGroup.check(getFromRadioButtonId());
+        toRadioGroup.check(getToRadioButtonId());
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        Log.d(TAG, "INSIDE onPause: called");
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        Log.d(TAG, "INSIDE onStop: called");
+    }
+
+    @Override
+    public void onDestroyView(){
+        super.onDestroyView();
+        Log.d(TAG, "INSIDE onDestroyView: called");
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        Log.d(TAG, "INSIDE onDestroy: called");
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.d(TAG, "INSIDE onDetach: called");
+        listener = null;
     }
 
     @Override
@@ -173,29 +269,12 @@ public class VolumeFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        Log.d(TAG, "INSIDE onAttach: called");
-        if (context instanceof VolumeFragmentListener){
-            listener = (VolumeFragmentListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement VolumeFragmentListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        Log.d(TAG, "INSIDE onDetach: called");
-        listener = null;
-    }
-
+    //Volume Fragment interface listener
     public interface VolumeFragmentListener{
         void convert(EditText output, double input, int fromIndex, int toIndex);
     }
 
+    //Clear and set input and output TextViews to 0
     private void clear(){
         EditText input = (EditText) getActivity().findViewById(R.id.from_value_edit);
         EditText output = (EditText) getActivity().findViewById(R.id.to_value_edit);
@@ -203,4 +282,36 @@ public class VolumeFragment extends Fragment {
         input.setHint("0");
         output.setText("0");
     }
+
+    //Set selected from radio button id
+    private void setFromRadioButtonId(int radioButton){
+        fromRadioButtonId = radioButton;
+    }
+
+    //Set selected to radio button id
+    private void setToRadioButtonId(int radioButton){
+        toRadioButtonId = radioButton;
+    }
+
+    //Set selected from radio button text
+    private void setFromRadioButtonText(String text){
+        fromRadioButtonText = text;
+    }
+
+    //Set selected to radio button text
+    private void setToRadioButtonText(String text){
+        toRadioButtonText = text;
+    }
+
+    //Get selected from radio button id
+    private int getFromRadioButtonId(){ return fromRadioButtonId; }
+
+    //Get selected to radio button id
+    private int getToRadioButtonId(){ return toRadioButtonId; }
+
+    //Get selected from radio button text
+    private String getFromRadioButtonText(){ return fromRadioButtonText; }
+
+    //Get selected to radio button text
+    private String getToRadioButtonText(){ return toRadioButtonText; }
 }

@@ -20,6 +20,10 @@ import android.widget.TextView;
  */
 
 public class Utilities {
+    //Public constants
+    //String keys
+    public static final String FROM_RADIO_BUTTON_ID = "from_radio_button_id";
+    public static final String TO_RADIO_BUTTON_ID = "to_radio_button_id";
     //Display About AlertDialog
     public static void aboutDialog(final Context context){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
