@@ -3,11 +3,6 @@
     <string name="website">http://www.ngorham.net</string>
     <string name="play_store">"https://play.google.com/store/apps/details?id=net.ngorham.tallycounter"</string>
     <string name="download_link">Download this app!\nhttps://play.google.com/store/apps/details?id=net.ngorham.tallycounter</string>
-    <string name="ounce_to_ounce"> </string>
-    <string name="ounce_to_pint"> </string>
-    <string name="ounces">Ounces fn output</string>
-    <string name="pints">Pints fn output</string>
-    <string name="gallons">Gallons fn output</string>
     <!-- Action bar -->
     <string name="clear">Clear</string>
     <string name="rate_us">Rate us!</string>
@@ -27,6 +22,25 @@
         <item>Barrel</item>
         <item>Milliliter</item>
         <item>Liter</item>
+        <item>8oz Can</item>
+        <item>11.5oz Can</item>
+        <item>12oz Can/Bottle</item>
+        <item>16oz Can</item>
+        <item>22oz Bottle</item>
+        <item>32oz Crowler</item>
+        <item>64oz Growler</item>
+        <item>375mL Bottle</item>
+        <item>500mL Bottle</item>
+        <item>750mL Bottle</item>
+        <item>Mini Keg</item>
+        <item>Eighth Barrel Keg</item>
+        <item>Corny Keg</item>
+        <item>Sixtel Keg</item>
+        <item>Quarter Barrel Keg</item>
+        <item>Half Barrel Keg</item>
+        <item>20L Keg</item>
+        <item>30L Keg</item>
+        <item>50L Keg</item>
     </string-array>
     <string name="from_text">From</string>
     <string name="from_selected_text"> </string>
