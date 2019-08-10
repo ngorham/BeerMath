@@ -4,6 +4,7 @@
     <string name="play_store">"https://play.google.com/store/apps/details?id=net.ngorham.tallycounter"</string>
     <string name="download_link">Download this app!\nhttps://play.google.com/store/apps/details?id=net.ngorham.tallycounter</string>
     <!-- Action bar -->
+    <string name="swap">Swap</string>
     <string name="clear">Clear</string>
     <string name="rate_us">Rate us!</string>
     <string name="app_share">Share the app!</string>

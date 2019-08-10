@@ -36,6 +36,8 @@ public class VolumeFragment extends Fragment {
     private View layout;
     private RadioGroup fromRadioGroup;
     private RadioGroup toRadioGroup;
+    private TextView fromSelectedText;
+    private TextView toSelectedText;
     private VolumeFragmentListener listener;
     private int fromRadioButtonId;
     private int toRadioButtonId;
@@ -122,8 +124,8 @@ public class VolumeFragment extends Fragment {
         fromRadioGroup.check(getFromRadioButtonId());
         toRadioGroup.check(getToRadioButtonId());
         //Set default selected texts
-        TextView fromSelectedText = layout.findViewById(R.id.from_selected_text);
-        TextView toSelectedText = layout.findViewById(R.id.to_selected_text);
+        fromSelectedText = layout.findViewById(R.id.from_selected_text);
+        toSelectedText = layout.findViewById(R.id.to_selected_text);
         fromSelectedText.setText(getFromRadioButtonText());
         toSelectedText.setText(getToRadioButtonText());
         //Set listener to input textView
@@ -156,7 +158,7 @@ public class VolumeFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if(group.findViewById(checkedId).isPressed()){
-                    Log.d(TAG, "INSIDE fromRadioGroupCheckListener: called");
+                    setFromRadioButtonText(radioBtn.getText().toString());
                     getArguments().putInt(Utilities.FROM_RADIO_BUTTON_ID, checkedId);
                     setFromRadioButtonId(checkedId);
                     RadioButton radioBtn = (RadioButton) getActivity().findViewById(checkedId);
@@ -179,7 +181,7 @@ public class VolumeFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if(group.findViewById(checkedId).isPressed()){
-                    Log.d(TAG, "INSIDE toRadioGroupCheckListener: called");
+                    setToRadioButtonText(radioBtn.getText().toString());
                     getArguments().putInt(Utilities.TO_RADIO_BUTTON_ID, checkedId);
                     setToRadioButtonId(checkedId);
                     RadioButton radioBtn = (RadioButton) getActivity().findViewById(checkedId);
@@ -260,8 +262,10 @@ public class VolumeFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) { //Handle action items
+            case R.id.swap:
+                swap();
+                return true;
             case R.id.clear: //clear action
-                Log.d(TAG, "INSIDE onOptionsItemSelected: clear option selected");
                 clear();
                 return true;
             default:
@@ -281,6 +285,31 @@ public class VolumeFragment extends Fragment {
         input.setText("");
         input.setHint("0");
         output.setText("0");
+    }
+
+    //Swap from and to selected RadioButtons and TextViews
+    private void swap(){
+        EditText inputTextView = (EditText) getActivity().findViewById(R.id.from_value_edit);
+        EditText outputTextView = (EditText) getActivity().findViewById(R.id.to_value_edit);
+        int idTemp = getFromRadioButtonId();
+        String textTemp = getFromRadioButtonText();
+        fromRadioGroup.check(getToRadioButtonId());
+        toRadioGroup.check(getFromRadioButtonId());
+        setFromRadioButtonId(getToRadioButtonId());
+        getArguments().putInt(Utilities.FROM_RADIO_BUTTON_ID, getFromRadioButtonId());
+        setToRadioButtonId(idTemp);
+        getArguments().putInt(Utilities.TO_RADIO_BUTTON_ID, getToRadioButtonId());
+        fromSelectedText.setText(getToRadioButtonText());
+        toSelectedText.setText(getFromRadioButtonText());
+        setFromRadioButtonText(getToRadioButtonText());
+        setToRadioButtonText(textTemp);
+        String inputStr = inputTextView.getText().toString().trim();
+        if(inputStr.length() > 0){
+            double input = Double.parseDouble(inputStr);
+            listener.convert(outputTextView, input, getFromRadioButtonId(), getToRadioButtonId());
+        } else {
+            outputTextView.setText("0");
+        }
     }
 
     //Set selected from radio button id
