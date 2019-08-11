@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/pref_title_formatting"
+        android:key="format_category">
+
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/pref_title_about"
+        android:key="about_category">
+        <Preference
+            android:key="app_rate"
+            android:title="@string/pref_title_app_rate"
+            android:summary="@string/pref_summary_app_rate"
+            android:icon="@drawable/ic_star_black_18dp">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/play_store"/>
+        </Preference>
+        <Preference
+            android:key="app_share"
+            android:title="@string/pref_title_app_share"
+            android:summary="@string/pref_summary_app_share"
+            android:icon="@drawable/ic_share_variant_black_18dp" />
+        <Preference
+            android:key="app_donate"
+            android:title="@string/pref_title_app_donate"
+            android:summary="@string/pref_summary_app_donate"
+            android:icon="@drawable/ic_cash_usd_black_18dp"/>
+        <Preference
+            android:key="app_version"
+            android:title="@string/pref_title_app_version"
+            android:summary="@string/pref_summary_app_version"
+            android:icon="@drawable/ic_information_black_18dp"
+            android:selectable="false" />
+        <Preference
+            android:key="app_author"
+            android:title="@string/pref_title_app_author"
+            android:summary="@string/pref_summary_app_author"
+            android:icon="@drawable/ic_account_black_18dp">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/website"/>
+        </Preference>
+    </PreferenceCategory>
+</PreferenceScreen>

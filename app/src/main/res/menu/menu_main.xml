@@ -14,21 +14,33 @@
         android:orderInCategory="2"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/rate_us"
-        android:title="@string/rate_us"
+        android:id="@+id/app_rate"
+        android:title="@string/app_rate"
         android:icon="@drawable/ic_star_black_18dp"
-        android:orderInCategory="98"
+        android:orderInCategory="96"
         app:showAsAction="never|withText" />
     <item
         android:id="@+id/app_share"
         android:title="@string/app_share"
         android:icon="@drawable/ic_share_variant_black_18dp"
-        android:orderInCategory="99"
+        android:orderInCategory="97"
         app:showAsAction="never|withText" />
+    <item
+        android:id="@+id/app_donate"
+        android:title="@string/app_donate"
+        android:icon="@drawable/ic_cash_usd_black_18dp"
+        android:orderInCategory="98"
+        app:showAsAction="never|withText"/>
     <item
         android:id="@+id/app_about"
         android:title="@string/app_about"
         android:icon="@drawable/ic_information_black_18dp"
-        android:orderInCategory="100"
+        android:orderInCategory="99"
         app:showAsAction="never|withText" />
+    <item
+        android:id="@+id/app_settings"
+        android:title="@string/app_settings"
+        android:icon="@drawable/ic_settings_black_18dp"
+        android:orderInCategory="100"
+        app:showAsAction="never|withText"/>
 </menu>

@@ -133,15 +133,23 @@ public class MainActivity extends AppCompatActivity
     //Call when user clicks an item in action bar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent settingsIntent;
         switch (item.getItemId()) { //Handle action items
-            case R.id.rate_us: //Rate us action
+            case R.id.app_rate: //Rate us action
                 Utilities.rateUs(context);
                 return true;
             case R.id.app_share: //Share action
                 Utilities.shareApp(context);
                 return true;
+            case R.id.app_donate: //Donate action
+                Utilities.donate(context);
+                return true;
             case R.id.app_about: //About action
                 Utilities.aboutDialog(context);
+                return true;
+            case R.id.app_settings: //Settings action
+                settingsIntent = new Intent(context, SettingsActivity.class);
+                startActivity(settingsIntent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

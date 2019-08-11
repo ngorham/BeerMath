@@ -31,7 +31,6 @@ import android.widget.Toast;
 public class VolumeFragment extends Fragment {
     //Private constants
     private final String TAG = "VolumeFragment";
-
     //Private variables
     private View layout;
     private RadioGroup fromRadioGroup;
@@ -158,12 +157,11 @@ public class VolumeFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if(group.findViewById(checkedId).isPressed()){
-                    setFromRadioButtonText(radioBtn.getText().toString());
                     getArguments().putInt(Utilities.FROM_RADIO_BUTTON_ID, checkedId);
                     setFromRadioButtonId(checkedId);
                     RadioButton radioBtn = (RadioButton) getActivity().findViewById(checkedId);
-                    TextView fromSelectedText = (TextView) getActivity().findViewById(R.id.from_selected_text);
                     fromSelectedText.setText(radioBtn.getText());
+                    setFromRadioButtonText(radioBtn.getText().toString());
                     //check input value
                     String inputStr = inputTextView.getText().toString().trim();
                     if(inputStr.length() > 0){
@@ -181,12 +179,11 @@ public class VolumeFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if(group.findViewById(checkedId).isPressed()){
-                    setToRadioButtonText(radioBtn.getText().toString());
                     getArguments().putInt(Utilities.TO_RADIO_BUTTON_ID, checkedId);
                     setToRadioButtonId(checkedId);
                     RadioButton radioBtn = (RadioButton) getActivity().findViewById(checkedId);
-                    TextView toSelectedText = (TextView) getActivity().findViewById(R.id.to_selected_text);
                     toSelectedText.setText(radioBtn.getText());
+                    setToRadioButtonText(radioBtn.getText().toString());
                     //check input value
                     String inputStr = inputTextView.getText().toString().trim();
                     if(inputStr.length() > 0){

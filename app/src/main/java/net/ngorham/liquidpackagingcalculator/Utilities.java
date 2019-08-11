@@ -60,4 +60,8 @@ public class Utilities {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(site));
         context.startActivity(intent);
     }
+    //Donate
+    public static void donate(Context context){
+
+    }
 }
