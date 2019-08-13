@@ -37,9 +37,12 @@ public class VolumeFragment extends Fragment {
     private RadioGroup toRadioGroup;
     private TextView fromSelectedText;
     private TextView toSelectedText;
+    private EditText fromEditText;
+    private EditText toEditText;
     private VolumeFragmentListener listener;
     private int fromRadioButtonId;
     private int toRadioButtonId;
+    private double conversion;
     private String fromRadioButtonText;
     private String toRadioButtonText;
 
@@ -97,9 +100,9 @@ public class VolumeFragment extends Fragment {
         toRadioGroup = (RadioGroup) layout.findViewById(R.id.to_radio_group);
         String[] units = getResources().getStringArray(R.array.volume_units);
         //Input TextView
-        final EditText inputTextView = layout.findViewById(R.id.from_value_edit);
+        fromEditText = layout.findViewById(R.id.from_value_edit);
         //Output TextView
-        final EditText outputTextView = layout.findViewById(R.id.to_value_edit);
+        toEditText = layout.findViewById(R.id.to_value_edit);
         //Create radio buttons
         for(int i = 0; i < units.length; i++){
             RadioButton fromRadioButton = new RadioButton(getActivity());
@@ -128,7 +131,7 @@ public class VolumeFragment extends Fragment {
         fromSelectedText.setText(getFromRadioButtonText());
         toSelectedText.setText(getToRadioButtonText());
         //Set listener to input textView
-        inputTextView.addTextChangedListener(new TextWatcher() {
+        fromEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -136,19 +139,20 @@ public class VolumeFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length() > 0){
-                    int fromCheckedRadioButtonId = fromRadioGroup.getCheckedRadioButtonId();
-                    int toCheckedRadioButtonId = toRadioGroup.getCheckedRadioButtonId();
-                    double input = Double.parseDouble(inputTextView.getText().toString().trim());
-                    listener.convert(outputTextView, input, fromCheckedRadioButtonId, toCheckedRadioButtonId);
-                } else {
-                    outputTextView.setText("0");
-                }
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                String inputStr = fromEditText.getText().toString().trim();
+                if(inputStr.length() > 0){
+                    int fromId = fromRadioGroup.getCheckedRadioButtonId();
+                    int toId = toRadioGroup.getCheckedRadioButtonId();
+                    conversion = Double.parseDouble(inputStr);
+                    listener.convert(toEditText, conversion, fromId, toId);
+                } else {
+                    toEditText.setText("0");
+                }
             }
         });
         //Set listener to radio button groups
@@ -163,13 +167,13 @@ public class VolumeFragment extends Fragment {
                     fromSelectedText.setText(radioBtn.getText());
                     setFromRadioButtonText(radioBtn.getText().toString());
                     //check input value
-                    String inputStr = inputTextView.getText().toString().trim();
+                    String inputStr = fromEditText.getText().toString().trim();
                     if(inputStr.length() > 0){
-                        double input = Double.parseDouble(inputStr);
+                        conversion = Double.parseDouble(inputStr);
                         int toCheckedRadioButtonId = toRadioGroup.getCheckedRadioButtonId();
-                        listener.convert(outputTextView, input, checkedId, toCheckedRadioButtonId);
+                        listener.convert(toEditText, conversion, checkedId, toCheckedRadioButtonId);
                     } else {
-                        outputTextView.setText("0");
+                        toEditText.setText("0");
                     }
                 }
             }
@@ -185,13 +189,13 @@ public class VolumeFragment extends Fragment {
                     toSelectedText.setText(radioBtn.getText());
                     setToRadioButtonText(radioBtn.getText().toString());
                     //check input value
-                    String inputStr = inputTextView.getText().toString().trim();
+                    String inputStr = fromEditText.getText().toString().trim();
                     if(inputStr.length() > 0){
-                        double input = Double.parseDouble(inputStr);
+                        conversion = Double.parseDouble(inputStr);
                         int fromCheckedRadioButtonId = fromRadioGroup.getCheckedRadioButtonId();
-                        listener.convert(outputTextView, input, fromCheckedRadioButtonId, checkedId);
+                        listener.convert(toEditText, conversion, fromCheckedRadioButtonId, checkedId);
                     } else {
-                        outputTextView.setText("0");
+                        toEditText.setText("0");
                     }
                 }
             }
@@ -277,17 +281,13 @@ public class VolumeFragment extends Fragment {
 
     //Clear and set input and output TextViews to 0
     private void clear(){
-        EditText input = (EditText) getActivity().findViewById(R.id.from_value_edit);
-        EditText output = (EditText) getActivity().findViewById(R.id.to_value_edit);
-        input.setText("");
-        input.setHint("0");
-        output.setText("0");
+        fromEditText.setText("");
+        fromEditText.setHint("0");
+        toEditText.setText("0");
     }
 
     //Swap from and to selected RadioButtons and TextViews
     private void swap(){
-        EditText inputTextView = (EditText) getActivity().findViewById(R.id.from_value_edit);
-        EditText outputTextView = (EditText) getActivity().findViewById(R.id.to_value_edit);
         int idTemp = getFromRadioButtonId();
         String textTemp = getFromRadioButtonText();
         fromRadioGroup.check(getToRadioButtonId());
@@ -300,12 +300,12 @@ public class VolumeFragment extends Fragment {
         toSelectedText.setText(getFromRadioButtonText());
         setFromRadioButtonText(getToRadioButtonText());
         setToRadioButtonText(textTemp);
-        String inputStr = inputTextView.getText().toString().trim();
+        String inputStr = fromEditText.getText().toString().trim();
         if(inputStr.length() > 0){
-            double input = Double.parseDouble(inputStr);
-            listener.convert(outputTextView, input, getFromRadioButtonId(), getToRadioButtonId());
+            conversion = Double.parseDouble(inputStr);
+            listener.convert(toEditText, conversion, getFromRadioButtonId(), getToRadioButtonId());
         } else {
-            outputTextView.setText("0");
+            toEditText.setText("0");
         }
     }
 

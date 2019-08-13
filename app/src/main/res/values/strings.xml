@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">BeerMath</string>
     <string name="website">http://www.ngorham.net</string>
@@ -18,6 +19,12 @@
     <string name="signature">Neil Gorham</string>
     <!-- Preferences -->
     <string name="pref_title_formatting">Formatting</string>
+    <string name="pref_title_num_decimals">Number of Decimals</string>
+    <string name="pref_summary_num_decimals">Set the number of decimal places to be shown in the converted value</string>
+    <string name="pref_title_group_separator">Group Separator</string>
+    <string name="pref_summary_group_separator">Set the group separator to be shown in the converted value</string>
+    <string name="pref_title_decimal_separator">Decimal Separator</string>
+    <string name="pref_summary_decimal_separator">Set the decimal separator to be shown in the converted value</string>
     <string name="pref_title_about">About</string>
     <string name="pref_title_app_rate">Rate on Google Play</string>
     <string name="pref_summary_app_rate">Enjoy using BeerMath? Why not rate it 5 stars?</string>
@@ -29,6 +36,33 @@
     <string name="pref_summary_app_version">1.0.0 8/2019</string>
     <string name="pref_title_app_author">Author</string>
     <string name="pref_summary_app_author">Neil Gorham</string>
+    <!-- Number of Decimals -->
+    <string-array name="num_decimals" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+    <!-- Group Separators -->
+    <string name="group_separator_none">None</string>
+    <string-array name="group_separators" translatable="false">
+        <item>@string/pref_default_group_separator</item>
+        <item>,</item>
+        <item>" "</item>
+        <item>.</item>
+    </string-array>
+    <!-- Decimal Separators -->
+    <string-array name="decimal_separators" translatable="false">
+        <item>@string/pref_default_decimal_separator</item>
+        <item>,</item>
+    </string-array>
     <!-- VolumeFragment -->
     <string-array name="volume_units">
         <item>Ounce</item>

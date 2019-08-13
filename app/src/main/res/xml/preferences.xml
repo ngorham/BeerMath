@@ -3,7 +3,30 @@
     <PreferenceCategory
         android:title="@string/pref_title_formatting"
         android:key="format_category">
-
+        <ListPreference
+            android:key="num_decimals"
+            android:title="@string/pref_title_num_decimals"
+            android:summary="@string/pref_summary_num_decimals"
+            android:icon="@drawable/ic_decimal_increase_black_18dp"
+            android:defaultValue="@string/pref_default_num_decimals"
+            android:entries="@array/num_decimals"
+            android:entryValues="@array/num_decimals" />
+        <ListPreference
+            android:key="group_separator"
+            android:title="@string/pref_title_group_separator"
+            android:summary="@string/pref_summary_group_separator"
+            android:icon="@drawable/ic_comma_black_18dp"
+            android:defaultValue="@string/pref_default_group_separator"
+            android:entries="@array/group_separators"
+            android:entryValues="@array/group_separators" />
+        <ListPreference
+            android:key="decimal_separator"
+            android:title="@string/pref_title_decimal_separator"
+            android:summary="@string/pref_summary_decimal_separator"
+            android:icon="@drawable/ic_dot_black_18dp"
+            android:defaultValue="@string/pref_default_decimal_separator"
+            android:entries="@array/decimal_separators"
+            android:entryValues="@array/decimal_separators"/>
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/pref_title_about"
@@ -15,7 +38,7 @@
             android:icon="@drawable/ic_star_black_18dp">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="@string/play_store"/>
+                android:data="@string/play_store" />
         </Preference>
         <Preference
             android:key="app_share"
@@ -40,7 +63,7 @@
             android:icon="@drawable/ic_account_black_18dp">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="@string/website"/>
+                android:data="@string/website" />
         </Preference>
     </PreferenceCategory>
 </PreferenceScreen>

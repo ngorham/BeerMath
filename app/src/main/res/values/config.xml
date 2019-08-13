@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="pref_default_num_decimals">4</string>
+    <string name="pref_default_group_separator">None</string>
+    <string name="pref_default_decimal_separator">.</string>
     <integer name="from_num_digits">15</integer>
 </resources>

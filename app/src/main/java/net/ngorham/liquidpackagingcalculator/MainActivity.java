@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.lang.reflect.Method;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 
 /**
  * Liquid Packaging Calculator
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity
     private FragmentManager fm;
     private FragmentTransaction ft;
     private LiquidCalculator lq;
+    private Preferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,8 @@ public class MainActivity extends AppCompatActivity
         }
         //Set up Liquid Calculator
         lq = new LiquidCalculator();
+        //Set up Preferences
+        prefs = Preferences.getInstance(context);
     }
 
     @Override
@@ -3980,6 +3985,28 @@ public class MainActivity extends AppCompatActivity
             }
     };
 
+    //Returns the DecimalFormat
+    private DecimalFormat getDecimalFormat(){
+        DecimalFormat formatter = new DecimalFormat();
+
+        //Set maximum number of decimal places
+        formatter.setMaximumFractionDigits(prefs.getNumDecimals());
+
+        //Set group and decimal separators
+        DecimalFormatSymbols symbols = formatter.getDecimalFormatSymbols();
+        symbols.setDecimalSeparator(prefs.getDecimalSeparator().charAt(0));
+
+        String groupSeparator = prefs.getGroupSeparator();
+        boolean isSeparatorUsed = !groupSeparator.equals(context.getString(R.string.group_separator_none));
+        formatter.setGroupingUsed(isSeparatorUsed);
+        if (isSeparatorUsed) {
+            symbols.setGroupingSeparator(groupSeparator.charAt(0));
+        }
+
+        formatter.setDecimalFormatSymbols(symbols);
+        return formatter;
+    }
+
     //VolumeFragmentListener functions
     @Override
     public void convert(EditText output, double input, int fromIndex, int toIndex){
@@ -3987,7 +4014,7 @@ public class MainActivity extends AppCompatActivity
         double conversion = calculations[fromIndex][toIndex].calculate(input);
         if(output != null){
             //set output text to calculation
-            output.setText(String.valueOf(conversion));
+            output.setText(getDecimalFormat().format(conversion));
         }
     }
 }
