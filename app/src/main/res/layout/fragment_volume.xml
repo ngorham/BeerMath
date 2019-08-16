@@ -111,7 +111,6 @@
                     android:layout_marginEnd="@dimen/margin_view_small"
                     android:layout_marginRight="@dimen/margin_view_small" />
             </LinearLayout>
-
         </android.support.v4.widget.NestedScrollView>
     </android.support.design.widget.CoordinatorLayout>
 </RelativeLayout>

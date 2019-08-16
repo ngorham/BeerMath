@@ -2,8 +2,8 @@ package net.ngorham.liquidpackagingcalculator;
 
 import android.content.Context;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 
 /**
@@ -18,8 +18,6 @@ import android.preference.PreferenceFragment;
  */
 
 public class SettingsActivity extends PreferenceActivity {
-    //Private variables
-    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +41,15 @@ public class SettingsActivity extends PreferenceActivity {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     Utilities.shareApp(context);
+                    return true;
+                }
+            });
+
+            Preference appDonate = findPreference("app_donate");
+            appDonate.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener(){
+                @Override
+                public boolean onPreferenceClick(Preference preference){
+                    Utilities.donate(context);
                     return true;
                 }
             });

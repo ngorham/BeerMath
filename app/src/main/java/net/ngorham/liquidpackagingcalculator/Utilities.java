@@ -62,6 +62,7 @@ public class Utilities {
     }
     //Donate
     public static void donate(Context context){
-
+        Intent intent = new Intent(context, DonateActivity.class);
+        context.startActivity(intent);
     }
 }
