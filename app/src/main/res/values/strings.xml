@@ -97,13 +97,7 @@
     <string name="to_text">To</string>
     <string name="to_selected_text"> </string>
     <string name="hint_from_value">0</string>
-    <!-- Donation options -->
-    <string-array name="donation_options">
-        <item>Buy me a bag of beer nuts</item>
-        <item>Buy me a pint of beer</item>
-        <item>Buy me a pint of sour beer</item>
-        <item>Buy me a case of beer</item>
-    </string-array>
+    <!-- Donation toasts -->
     <string name="toast_donation_successful">Thank you for donating!</string>
     <string name="toast_error_billing_internet">Oops, there was a problem. Please make sure you have a working Internet connection and try again.</string>
     <string name="toast_error_billing_general">Oops, there was a problem. Please try again.</string>
