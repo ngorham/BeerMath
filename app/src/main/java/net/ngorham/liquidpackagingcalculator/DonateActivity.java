@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import net.ngorham.liquidpackagingcalculator.iab.IabHelper;
@@ -86,7 +85,7 @@ public class DonateActivity extends AppCompatActivity {
                 .append(getString(R.string.license_key_p2))
                 .append(getString(R.string.license_key_p3));
 
-        mHelper = new IabHelper(this, sb.toString());
+        mHelper = new IabHelper(context, sb.toString());
         try {
             mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
                 @Override

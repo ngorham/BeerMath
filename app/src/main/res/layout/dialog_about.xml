@@ -10,25 +10,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/app_version"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textColor="@color/colorAccent" />
     <TextView
         android:id="@+id/app_version_number_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/app_version_number"
-        android:textSize="18sp" />
+        android:textSize="24sp" />
     <TextView
         android:id="@+id/author_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/author"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textColor="@color/colorAccent" />
     <TextView
         android:id="@+id/signature_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/signature"
-        android:textSize="18sp" />
+        android:textSize="24sp" />
 </LinearLayout>

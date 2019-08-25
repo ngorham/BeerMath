@@ -3,8 +3,8 @@
     <!-- App basics -->
     <string name="app_name">BeerMath</string>
     <string name="website">http://www.ngorham.net</string>
-    <string name="play_store">"https://play.google.com/store/apps/details?id=net.ngorham.tallycounter"</string>
-    <string name="download_link">Download this app!\nhttps://play.google.com/store/apps/details?id=net.ngorham.tallycounter</string>
+    <string name="play_store">"https://play.google.com/store/apps/details?id=net.ngorham.liquidpackagingcalculator"</string>
+    <string name="download_link">Download this app!\nhttps://play.google.com/store/apps/details?id=net.ngorham.liquidpackagingcalculator</string>
     <!-- Action bar -->
     <string name="swap">Swap</string>
     <string name="clear">Clear</string>

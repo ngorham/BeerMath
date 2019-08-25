@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
+//import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 /**
@@ -68,7 +67,6 @@ public class VolumeFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Log.d(TAG, "INSIDE onAttach: called");
         if (context instanceof VolumeFragmentListener){
             listener = (VolumeFragmentListener) context;
         } else {
@@ -80,14 +78,12 @@ public class VolumeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "INSIDE onCreate: called");
         setHasOptionsMenu(true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d(TAG, "INSIDE onCreateView: called");
         // Inflate the layout for this fragment
         layout = inflater.inflate(R.layout.fragment_volume, container, false);
         //Check Arguments
@@ -109,6 +105,8 @@ public class VolumeFragment extends Fragment {
             RadioButton toRadioButton = new RadioButton(getActivity());
             fromRadioButton.setText(units[i]);
             toRadioButton.setText(units[i]);
+            fromRadioButton.setTextSize(16);
+            toRadioButton.setTextSize(16);
             fromRadioButton.setId(i);
             toRadioButton.setId(i);
             fromRadioButton.setChecked(false);
@@ -206,25 +204,21 @@ public class VolumeFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState){
         super.onSaveInstanceState(savedInstanceState);
-        Log.d(TAG, "INSIDE onSaveInstanceState: called");
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-        Log.d(TAG, "INSIDE onActivityCreated: called");
     }
 
     @Override
     public void onStart(){
         super.onStart();
-        Log.d(TAG, "INSIDE onStart: called");
     }
 
     @Override
     public void onResume(){
         super.onResume();
-        Log.d(TAG, "INSIDE onResume: called");
         fromRadioGroup.check(getFromRadioButtonId());
         toRadioGroup.check(getToRadioButtonId());
     }
@@ -232,31 +226,26 @@ public class VolumeFragment extends Fragment {
     @Override
     public void onPause(){
         super.onPause();
-        Log.d(TAG, "INSIDE onPause: called");
     }
 
     @Override
     public void onStop(){
         super.onStop();
-        Log.d(TAG, "INSIDE onStop: called");
     }
 
     @Override
     public void onDestroyView(){
         super.onDestroyView();
-        Log.d(TAG, "INSIDE onDestroyView: called");
     }
 
     @Override
     public void onDestroy(){
         super.onDestroy();
-        Log.d(TAG, "INSIDE onDestroy: called");
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        Log.d(TAG, "INSIDE onDetach: called");
         listener = null;
     }
 

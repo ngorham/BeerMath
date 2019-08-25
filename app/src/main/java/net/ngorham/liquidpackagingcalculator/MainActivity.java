@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import java.lang.reflect.Method;
 import java.text.DecimalFormat;
@@ -46,7 +45,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d(TAG, "INSIDE onCreate: called");
         context = this;
         //Set up Action bar
         Toolbar myToolbar = findViewById(R.id.toolbar);
@@ -64,7 +62,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        Log.d(TAG, "INSIDE onPostCreate: called");
     }
 
     @Override
@@ -75,42 +72,35 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d(TAG, "INSIDE onStart: called");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "INSIDE onResume: called");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d(TAG, "INSIDE onPause: called");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d(TAG, "INSIDE onStop: called");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "INSIDE onDestroy: called");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.d(TAG, "INSIDE onRestart: called");
     }
 
     @Override
     public void onBackPressed() {
-        Log.d(TAG, "INSIDE onBackPressed: called");
         super.onBackPressed();
     }
 
